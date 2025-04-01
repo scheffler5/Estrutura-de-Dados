@@ -1,16 +1,44 @@
 #include <stdio.h> 
 #include <stdlib.h>
-/*
-EX 1 - 
-Incrementa o proximo elemento da memoria, se for char +1byte e int +2bytes
-p++;      
-Incrementa o proximo valor da posição de p, por exemplo de for um int 1 ele vai para 2
-• (*p)++;         
-Ele acessa o valor do ponteiro e depois incrementa
-• *(p++); 
-Ele acessa o pronteiro em uma posição especifica como 10, quando um vetor seria p[10]
-• O que quer dizer *(p+10);
-*/
+
+struct Estoque {
+    int Codigo;
+    char Nome_Produto[30];
+    float Quantidade;
+    float Preco;};
+
+// função de input de valores na estrutura
+void Contar(int *t,struct Estoque *e, int index) {
+    // if para quando a quantidade de produtos cadastrado forem 0 ele retorna
+        if (*t == 0) return;
+        else{
+            // aqui ele adiciona 1 no Codigo do produto cadastrado de forma imcremental
+            e[index].Codigo = index + 1;
+            // inputs
+            printf("\nDigite o Nome do produto: ");
+            scanf("%s", e[index].Nome_Produto);
+            printf("\nDigite a Quantidade do produto: ");
+            scanf("%f", &e[index].Quantidade);
+            printf("\nDigite o Preço do produto: ");
+            scanf("%f", &e[index].Preco);
+            // diminui 1 do valor de t sem ser do endereço
+            (*t)--;
+            //aciona a recursividade
+            Contar(t, e, index + 1);}}
+//função para listar a estrutura
+void Listar(int te,struct Estoque *e, int index){
+    // if para quando o index que começa em 0 for igual a te ele retorna
+     if (index == te) return;
+     else{
+        // prints pelo numero do indice da estrutura
+        printf("Código: %d\n", e[index].Codigo);
+        printf("Nome: %s\n", e[index].Nome_Produto);
+        printf("Quantidade: %.2f\n", e[index].Quantidade);
+        printf("Preço: %.2f\n\n", e[index].Preco);
+        // aciona a recursividade adicionando 1 
+        Listar(te, e, index + 1);
+     }
+}
 
 
 void Vetor(int *p, int tamanho) {
@@ -42,8 +70,19 @@ void inverte_char(char *cptr){
         printf("%c", *cptr);}}
 
 
-
 int main()  { 
+/*
+EX 1 ---------------------------------------------
+Incrementa o proximo elemento da memoria, se for char +1byte e int +2bytes
+p++;      
+Incrementa o proximo valor da posição de p, por exemplo de for um int 1 ele vai para 2
+• (*p)++;         
+Ele acessa o valor do ponteiro e depois incrementa
+• *(p++); 
+Ele acessa o pronteiro em uma posição especifica como 10, quando um vetor seria p[10]
+• O que quer dizer *(p+10);
+*/
+
 // EX 2 ------------------------------------------
 //Declara as variaveis e o ponteiro
 int y, *p1, x1;  
@@ -129,6 +168,29 @@ o joguei em uma função recursiva que pegava o caracter e jogava um para frente
 cptr + 1, e depois ele printava o caracter no final da recursividade*/
 
 //EX 7 ---------------------------------------
+//Aqui eu declaro as variaveis t e te que serao quantos produtos deveram ser cadastrados
+int t,te;
+// input do usuario para t
+printf("\n\n\nDigite quantos produtos deseja cadastrar: ");
+scanf("%d",&t);
+//atribui o te a t para a função Listar
+te = t;
+// Inicializa a estrutura e aloca a sua memoria
+struct Estoque *e = (struct Estoque *)malloc(t * sizeof(struct Estoque));
+// chama a função recursiva para realizar os inputs da estrutura
+Contar(&t,e, 0);
+// chama a função recursiva para realizar a listagem da estrutura
+Listar(te,e,0);
+// libera a memoria
+free(e);
+/*Neste exercicio eu criei um estoque que lista os produtos apos o cadastro, eu utilizei duas funçoes recusivas,
+uma para realizar os inputs dentro da estrutura, levando em conta o tamanho definido pelo usuario e a outra 
+realiza os print dos resultados */
+
+
+//Ex 8 ----------------------------------------
+
+
 
 
 
