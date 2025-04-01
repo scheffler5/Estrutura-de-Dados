@@ -1,6 +1,7 @@
 #include <stdio.h> 
 #include <stdlib.h>
 
+//Estrutura de Estoque
 struct Estoque {
     int Codigo;
     char Nome_Produto[30];
@@ -68,7 +69,26 @@ void inverte_char(char *cptr){
         inverte_char(cptr + 1);
         //imprime o caracter
         printf("%c", *cptr);}}
+// Função recursiva para popula o vetor com os inputs
+void popular(int n, int *vet,int index){
+    // se index 0 for igual a n (tamanho) ele retorna 
+    if (index == n)return;
+    else{
+        //input de valores para o vet
+        printf("\nDigite um valor para a posição %d: ", index);
+        scanf("%d", &vet[index]);
+        // recursividade 
+        popular(n, vet, index + 1);}}
 
+        //Função recursiva para impressao do vetor
+void imprimir(int n, int *vet, int index) {
+    // se o index for igual a n (tamanho) ele retorna
+    if (index == n) return;
+    else{
+        // print da posição no vetor
+    printf("%d ", vet[index]);
+    //recursividade
+    imprimir(n, vet, index + 1);}}
 
 int main()  { 
 /*
@@ -189,6 +209,29 @@ realiza os print dos resultados */
 
 
 //Ex 8 ----------------------------------------
+//Declaração de n2 o tamanho de vet
+int n2;
+// input de n2
+printf("\nDigite um numero para o vetor : ");
+scanf("%d",&n2);
+// declaração de vet e sua alocação de memoria
+int *vet = (int *)malloc(n * sizeof(int));
+//acionamento da função popular
+popular(n2,vet,0);
+printf("Vetores dentro de vet: ");
+//acionamento da função imprimir
+imprimir(n2,vet, 0);
+// liberação de memoria
+free(vet);
+/*Neste exercicio eu fiz com ponteiro uma inserção de dados em um vetor, e imprimi eles, eu declarei a variavel
+de tamanho do vetor e um input para tal, depois eu declarei o vetor e alocando memoria para o mesmo, depois eu crie uma 
+função recursiva para povoar o vetor e outra para imprimi-lo*/
+
+//Ex 9 ----------------------------------------
+
+
+
+
 
 
 
