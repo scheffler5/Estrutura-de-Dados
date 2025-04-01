@@ -90,6 +90,62 @@ void imprimir(int n, int *vet, int index) {
     //recursividade
     imprimir(n, vet, index + 1);}}
 
+
+
+// função recursiva que aloca memoria na matriz
+int **alocar(int m, int n, int linha) {
+    // se linha for igual a m(Quantidade de colunas) ele retorna null
+    if (linha == m) return NULL; 
+    else{
+        // aloca a memória para a matriz
+        int **matriz = (linha == 0) ? (int **)malloc(m * sizeof(int *)) : NULL;
+        // Aloca a memória para a linha específica
+        matriz[linha] = (int *)malloc(n * sizeof(int));
+        // Chama recursivamente para alocar as próximas linhas
+        alocar(m, n, linha + 1);
+        return matriz;}}
+
+// Função recursiva para preencher a matriz
+void preencher(int **matriz, int m, int n, int i, int j) {
+    //se i for igual m(Quantidade de colunas) ele retorna 
+    if (i == m) return; 
+    else{
+        // com a mesma ideia para o vetor ele inputa na matriz
+        printf("Elemento [%d][%d]: ", i, j);
+        scanf("%d", &matriz[i][j]);
+        // ele verifica qual linha e coluna ele vai acionar a recursividade
+        if (j + 1 < n) {
+            preencher(matriz, m, n, i, j + 1);
+        }else {
+            preencher(matriz, m, n, i + 1, 0);}}}
+
+// função recursiva para imprimir a matriz
+void imprimir_matriz(int **matriz, int m, int n, int i, int j) {
+    //se i for igual m(Quantidade de colunas) ele retorna 
+    if (i == m) return; 
+    else{
+        // a mesma ideia do vetor mas aqui ele printa a matriz
+        printf("%d ", matriz[i][j]);
+        // verifica qual coluna ou linha vai continuar a recursividade
+        if (j + 1 < n) {
+            imprimir_matriz(matriz, m, n, i, j + 1);
+        }else {
+            printf("\n");
+            imprimir_matriz(matriz, m, n, i + 1, 0);}}}
+
+// função recursiva para liberar a memória da matriz
+void liberar(int **matriz, int m, int linha) {
+    // se linha for igual a m(Quantidade de colunas) ele retorna
+    if (linha == m) {
+        //libera memoria da matriz em si 
+        free(matriz);
+        return;
+    }else{
+        // libera a memoria da linha da matriz
+        free(matriz[linha]); 
+        //aciona a recursividade
+        liberar(matriz, m, linha + 1); }}
+
 int main()  { 
 /*
 EX 1 ---------------------------------------------
@@ -228,14 +284,26 @@ de tamanho do vetor e um input para tal, depois eu declarei o vetor e alocando m
 função recursiva para povoar o vetor e outra para imprimi-lo*/
 
 //Ex 9 ----------------------------------------
-
-
-
-
-
-
-
-
-
+//Declara a variavel m e n como int
+int m2, n3;
+// inputs de m e n, sendo linha e coluna respectivamente
+printf("\n\nDigite o número de linhas : ");
+scanf("%d", &m2);
+printf("Digite o número de colunas: ");
+scanf("%d", &n3);
+//declara a matriz e chama a função para a alocação de memoria da matriz linha por linha 
+int **matriz = alocar(m2, n3, 0);
+// preenche a matriz com inputs
+preencher(matriz, m2, n3, 0, 0);
+printf("\nMatriz preenchida:\n");
+//imprime a matriz bonitinha 
+imprimir_matriz(matriz, m2, n3, 0, 0);
+// função que libera a memoria da matriz linha por linha
+liberar(matriz, m2, 0);
+/* Neste exercicio eu criei duas variaveis que que pelo input eu adicionava o tamanho de linhas e colunas, e depois eu
+declarava a matriz e utilizava uma função para alocar a memoria linha por linha da matriz conforme o tamanho inputad, depois 
+eu inputei por outra função recursiva os valores da matriz, e utilizei outra função recursiva para imprimir a matriz, depois eu 
+liberei a memoria com uma quarta função, que liberava a memoria linha por linha e depois da matriz em si
+OBS: este exercicio foi mais complicadinho para alocar a matriz em si, mas deu tudo certo! */
 return (0);
 }
