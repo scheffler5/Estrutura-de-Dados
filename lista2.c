@@ -93,17 +93,7 @@ void imprimir(int n, int *vet, int index) {
 
 
 // função recursiva que aloca memoria na matriz
-int **alocar(int m, int n, int linha) {
-    // se linha for igual a m(Quantidade de colunas) ele retorna null
-    if (linha == m) return NULL; 
-    else{
-        // aloca a memória para a matriz
-        int **matriz = (linha == 0) ? (int **)malloc(m * sizeof(int *)) : NULL;
-        // Aloca a memória para a linha específica
-        matriz[linha] = (int *)malloc(n * sizeof(int));
-        // Chama recursivamente para alocar as próximas linhas
-        alocar(m, n, linha + 1);
-        return matriz;}}
+
 
 // Função recursiva para preencher a matriz
 void preencher(int **matriz, int m, int n, int i, int j) {
@@ -134,17 +124,7 @@ void imprimir_matriz(int **matriz, int m, int n, int i, int j) {
             imprimir_matriz(matriz, m, n, i + 1, 0);}}}
 
 // função recursiva para liberar a memória da matriz
-void liberar(int **matriz, int m, int linha) {
-    // se linha for igual a m(Quantidade de colunas) ele retorna
-    if (linha == m) {
-        //libera memoria da matriz em si 
-        free(matriz);
-        return;
-    }else{
-        // libera a memoria da linha da matriz
-        free(matriz[linha]); 
-        //aciona a recursividade
-        liberar(matriz, m, linha + 1); }}
+
 
 int main()  { 
 /*
@@ -291,15 +271,18 @@ printf("\n\nDigite o número de linhas : ");
 scanf("%d", &m2);
 printf("Digite o número de colunas: ");
 scanf("%d", &n3);
-//declara a matriz e chama a função para a alocação de memoria da matriz linha por linha 
-int **matriz = alocar(m2, n3, 0);
+//declara a matriz e aloca a memoria dinamicamente
+int **matriz = (int **)malloc(m2 * sizeof(int *));
+for (int i = 0; i < m2; i++) {
+    matriz[i] = (int *)malloc(n3 * sizeof(int));}
 // preenche a matriz com inputs
 preencher(matriz, m2, n3, 0, 0);
 printf("\nMatriz preenchida:\n");
 //imprime a matriz bonitinha 
 imprimir_matriz(matriz, m2, n3, 0, 0);
-// função que libera a memoria da matriz linha por linha
-liberar(matriz, m2, 0);
+//for para liberar memoria
+for (int i = 0; i < m2; i++) {
+    free(matriz[i]);}
 /* Neste exercicio eu criei duas variaveis que que pelo input eu adicionava o tamanho de linhas e colunas, e depois eu
 declarava a matriz e utilizava uma função para alocar a memoria linha por linha da matriz conforme o tamanho inputad, depois 
 eu inputei por outra função recursiva os valores da matriz, e utilizei outra função recursiva para imprimir a matriz, depois eu 

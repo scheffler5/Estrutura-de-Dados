@@ -16,8 +16,6 @@ int main() {
 
 
     push2(p, a, 2);
-
-
     pop2(p, saida, 2);
 
     int quantidade;
@@ -25,8 +23,5 @@ int main() {
     scanf("%d",&quantidade);
     push2(p, a, quantidade);
     pop2(p, saida, quantidade);
-
-
-    
     return 0;
 }
