@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compilar lista3 + Pilha",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "Lista3/lista3.c",
+        "Lista3/Pilha.c",
+        "-o",
+        "Lista3/output/lista3.exe",
+        "-Wall",
+        "-Wextra",
+        "-g"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Compila lista3.c junto com Pilha.c"
+    }
+  ]
+}
