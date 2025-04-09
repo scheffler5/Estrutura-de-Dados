@@ -126,24 +126,39 @@ int pop2(Pilha* pi,int n){
         free(no);}
     return 1;}
 
+//EX 3
+// nesta função eu coloco como parametro as duas pilhas 
 void transferir(Pilha* pi,Pilha* p){
+    //calculo o tamanho da pilha para posterior for
     int tamanho = tamanho_Pilha(pi);
+    //crio o vetor com alocação dinamica
     struct aluno* vetor = (struct aluno*) malloc(tamanho * sizeof(struct aluno));
+    // puxo o elemento como ponteiro para pi
     Elem* no = *pi;
+    // coloco o i igual ao tamanho pre estabelcido menos 1 para o for de push
     int i = tamanho - 1;
+    // while para ele parar quando o no for NULL
     while (no != NULL) {
+        // aqui eu povoo o vetor utilizando o i como paramtro para o indice do vetor e puxo o nó dos dados da struct
         vetor[i] = (*pi)->dados;
+        // puxo o no para o proximo nó
         no = no->prox;
     }
-
+// for para puxar os dados do vetor para a pilha 2
     for (i = 0; i < tamanho; i++) {
+        //puxo os valores do vetor para a pilha com a função ja feita
         push2(p, vetor[i], 1);
     }
-    imprime_Pilha(p);
+    // printa o tamanho da pilha nova antes do drop
+    printf("Tamanho da copia de pilha antes do drop: \n");
     printf("Tamanho: %d\n\n\n\n",tamanho_Pilha(p));
-    pop2(pi,4);
-    imprime_Pilha(p);
+    // dropa a pilha nova
+    pop2(p,tamanho);
+    // imprime o tamanho da pilha depois do drop
+    printf("Tamanho da copia de pilha depois do drop: \n");
     printf("Tamanho: %d\n\n\n\n",tamanho_Pilha(p));
+    //libera o vetor
     free(vetor);
+    //retorna
     return;
 }
