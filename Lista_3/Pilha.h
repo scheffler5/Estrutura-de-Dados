@@ -17,3 +17,6 @@ int tamanho_Pilha(Pilha* pi);
 int Pilha_vazia(Pilha* pi);
 int Pilha_cheia(Pilha* pi);
 void imprime_Pilha(Pilha* pi);
+int push2(Pilha* p, struct aluno a, int n);
+int pop2(Pilha* pi,int n);
+void transferir(Pilha* pi,Pilha* p);

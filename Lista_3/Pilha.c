@@ -9,6 +9,7 @@ struct elemento{
 };
 typedef struct elemento Elem;
 
+
 Pilha* cria_Pilha(){
     Pilha* pi = (Pilha*) malloc(sizeof(Pilha));
     if(pi != NULL)
@@ -98,4 +99,51 @@ void imprime_Pilha(Pilha* pi){
         printf("-------------------------------\n");
         no = no->prox;
     }
+}
+
+
+//EX 1 e 2
+int push2 (Pilha* pi,struct aluno a,int n){
+    for (int i=0; i<n;i++){
+        if(pi == NULL) return 0;
+        Elem* no;
+        no = (Elem*)malloc(sizeof(Elem));
+        if (no == NULL) return 0;
+        no-> dados = a;
+        no->prox = (*pi);
+        *pi = no;}
+    return 1;}
+//EX 1 e 2
+// eu reutilizei parte da função de remover da pilha para aqui e adicionei um for para a quantidade n
+int pop2(Pilha* pi,int n){
+    for (int i=0;i<n;i++){
+        if(pi == NULL)
+            return 0;
+        if((*pi) == NULL)
+            return 0;
+        Elem *no = *pi;
+        *pi = no->prox;
+        free(no);}
+    return 1;}
+
+void transferir(Pilha* pi,Pilha* p){
+    int tamanho = tamanho_Pilha(pi);
+    struct aluno* vetor = (struct aluno*) malloc(tamanho * sizeof(struct aluno));
+    Elem* no = *pi;
+    int i = tamanho - 1;
+    while (no != NULL) {
+        vetor[i] = (*pi)->dados;
+        no = no->prox;
+    }
+
+    for (i = 0; i < tamanho; i++) {
+        push2(p, vetor[i], 1);
+    }
+    imprime_Pilha(p);
+    printf("Tamanho: %d\n\n\n\n",tamanho_Pilha(p));
+    pop2(pi,4);
+    imprime_Pilha(p);
+    printf("Tamanho: %d\n\n\n\n",tamanho_Pilha(p));
+    free(vetor);
+    return;
 }
