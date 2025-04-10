@@ -5,9 +5,11 @@
 //Defini��o do tipo Pilha
 struct elemento{
     struct aluno dados;
+    int num;
     struct elemento *prox;
 };
 typedef struct elemento Elem;
+
 
 
 Pilha* cria_Pilha(){
@@ -100,7 +102,15 @@ void imprime_Pilha(Pilha* pi){
         no = no->prox;
     }
 }
-
+void imprime_Pilha2(Pilha* pi){
+    if(pi == NULL)
+        return;
+    Elem* no = *pi;
+    while(no != NULL){
+        printf("Matricula: %d\n",no->num);
+        no = no->prox;
+    }
+}
 
 //EX 1 e 2
 int push2 (Pilha* pi,struct aluno a,int n){
@@ -128,7 +138,8 @@ int pop2(Pilha* pi,int n){
 
 //EX 3
 // nesta função eu coloco como parametro as duas pilhas 
-void transferir(Pilha* pi,Pilha* p){
+void transferir(Pilha* pi){
+    Pilha* p =  cria_Pilha();
     //calculo o tamanho da pilha para posterior for
     int tamanho = tamanho_Pilha(pi);
     //crio o vetor com alocação dinamica
@@ -149,16 +160,50 @@ void transferir(Pilha* pi,Pilha* p){
         //puxo os valores do vetor para a pilha com a função ja feita
         push2(p, vetor[i], 1);
     }
+    imprime_Pilha(p);
     // printa o tamanho da pilha nova antes do drop
     printf("Tamanho da copia de pilha antes do drop: \n");
     printf("Tamanho: %d\n\n\n\n",tamanho_Pilha(p));
     // dropa a pilha nova
     pop2(p,tamanho);
+    imprime_Pilha(p);
     // imprime o tamanho da pilha depois do drop
     printf("Tamanho da copia de pilha depois do drop: \n");
     printf("Tamanho: %d\n\n\n\n",tamanho_Pilha(p));
+    libera_Pilha(p);
     //libera o vetor
     free(vetor);
     //retorna
     return;
+}
+//EX4
+int numeros(Pilha* pii, int n){
+    int numero,maior = 0,menor = 0,soma = 0,media = 0;
+    Elem* no;
+    for (int i=0; i<n;i++){
+        printf("Digite um numero para ser armazenado : ");
+        scanf("%d",&numero);
+        if(pii == NULL) return 0;
+        no = (Elem*)malloc(sizeof(Elem));
+        if (no == NULL) return 0;
+        no->num = numero;
+        no->prox = (*pii);
+        *pii = no;}
+    int tamanho = tamanho_Pilha(pii);
+    while(no != NULL){
+        if(maior < no->num){
+            maior = no->num;
+        }
+        if(menor > no->num){
+            menor = no->num;
+        }
+        soma = soma + no->num;
+        no = no->prox;
+    }
+    printf("\nMaior Numero: %d",maior);
+    printf("\nMenor numero : %d",menor);
+    media = soma/tamanho;
+    printf("\nA media : %d\n\n",media);
+    imprime_Pilha2(pii);
+    return 1;
 }
