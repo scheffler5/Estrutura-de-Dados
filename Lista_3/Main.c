@@ -7,7 +7,7 @@ int main(){
                          {4,"Ricardo",7.5,8.7,6.8},
                          {1,"Bianca",9.7,6.7,8.4},
                          {3,"Ana",5.7,6.1,7.4}};
-
+    Pilha* piii = cria_Pilha();
     Pilha* pi = cria_Pilha(); 
     Pilha* pii = cria_Pilha();
     int i;
@@ -38,11 +38,16 @@ int main(){
     printf("Tamanho: %d\n\n\n\n",tamanho_Pilha(pi));
 
     transferir(pi);
-    int tamanho, maior ,menor ,media;
+    int tamanho, maior ,menor ,media,t2;
     printf("Digite um Numero para n :");
     scanf("%d",&tamanho);
     numeros(pii,tamanho);
+    printf("Digite um Numero para n :");
+    scanf("%d",&t2);
+    push3(piii,t2);
+    verificar(pii, piii);
 
+    libera_Pilha(piii);
     libera_Pilha(pi);
     system("pause");
     

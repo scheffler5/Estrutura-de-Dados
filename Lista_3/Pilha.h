@@ -24,3 +24,5 @@ int pop2(Pilha* pi,int n);
 void transferir(Pilha* pi);
 int numeros(Pilha* pii, int n);
 void imprime_Pilha2(Pilha* pii);
+int push3 (Pilha* pi,int n);
+int verificar(Pilha* pii, Pilha* piii);

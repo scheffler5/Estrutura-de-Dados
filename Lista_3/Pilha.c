@@ -177,6 +177,7 @@ void transferir(Pilha* pi){
     return;
 }
 //EX4
+
 int numeros(Pilha* pii, int n){
     int numero,maior = 0,menor = 0,soma = 0,media = 0;
     Elem* no;
@@ -188,7 +189,10 @@ int numeros(Pilha* pii, int n){
         if (no == NULL) return 0;
         no->num = numero;
         no->prox = (*pii);
-        *pii = no;}
+        *pii = no;
+
+    }
+
     int tamanho = tamanho_Pilha(pii);
     while(no != NULL){
         if(maior < no->num){
@@ -205,5 +209,48 @@ int numeros(Pilha* pii, int n){
     media = soma/tamanho;
     printf("\nA media : %d\n\n",media);
     imprime_Pilha2(pii);
+    return 1;
+}
+int push3(Pilha* piii, int n) {
+    int numero;
+    Elem* no;
+    for (int i=0; i<n;i++){
+        printf("Digite um numero para ser armazenado : ");
+        scanf("%d",&numero);
+        if(piii == NULL) return 0;
+        no = (Elem*)malloc(sizeof(Elem));
+        if (no == NULL) return 0;
+        no->num = numero;
+        no->prox = (*piii);
+        *piii = no;
+    }
+    return 1;
+}
+
+int verificar(Pilha* pii, Pilha* piii){
+    if (pii == NULL || piii == NULL) {
+        printf("Uma das pilhas é nula!\n");
+        return 0;
+    }
+    Elem* no = *pii;   
+    Elem* noo = *piii;
+    int t1 = tamanho_Pilha(pii);
+    int t2 = tamanho_Pilha(piii);
+    if (t1 != t2) {
+        printf("As pilhas têm tamanhos diferentes!\n");
+        return 0;
+    }
+
+    imprime_Pilha2(piii);
+    imprime_Pilha2(pii);
+    while (noo != NULL && no != NULL) {
+        if (noo->num != no->num) {
+            printf("As pilhas não são iguais!\n");
+            return 0;
+        }
+        noo = noo->prox;
+        no = no->prox;
+    }
+    printf("As pilhas são iguais!\n");
     return 1;
 }
