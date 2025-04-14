@@ -26,3 +26,5 @@ int numeros(Pilha* pii, int n);
 void imprime_Pilha2(Pilha* pii);
 int push3 (Pilha* pi,int n);
 int verificar(Pilha* pii, Pilha* piii);
+int push4(Pilha* pi);
+void imprime_Pilha3(Pilha* pi);

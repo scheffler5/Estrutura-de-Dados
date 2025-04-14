@@ -6,6 +6,7 @@
 struct elemento{
     struct aluno dados;
     int num;
+    char palavra;
     struct elemento *prox;
 };
 typedef struct elemento Elem;
@@ -111,7 +112,15 @@ void imprime_Pilha2(Pilha* pi){
         no = no->prox;
     }
 }
-
+void imprime_Pilha3(Pilha* pi){
+    if(pi == NULL)
+        return;
+    Elem* no = *pi;
+    while(no != NULL){
+        printf("Matricula: %c\n",no->palavra);
+        no = no->prox;
+    }
+}
 //EX 1 e 2
 int push2 (Pilha* pi,struct aluno a,int n){
     for (int i=0; i<n;i++){
@@ -254,3 +263,23 @@ int verificar(Pilha* pii, Pilha* piii){
     printf("As pilhas são iguais!\n");
     return 1;
 }
+//E6 
+int push4(Pilha* pi) {
+    char numero;
+    Elem* no;
+    do {
+        printf("Digite um numero para ser armazenado (Digite * para sair): ");
+        scanf(" %c", &numero); 
+        if (numero == '*') break; 
+        if (pi == NULL) return 0;
+        no = (Elem*)malloc(sizeof(Elem));
+        if (no == NULL) return 0;
+        no->palavra = numero;
+        no->prox = (*pi);
+        *pi = no;
+    } while (1);
+    return 1;
+}
+
+
+
