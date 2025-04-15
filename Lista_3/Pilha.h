@@ -31,3 +31,10 @@ void imprime_Pilha3(Pilha* pi);
 int Palindromo(Pilha* pi, char* str);
 int par(Pilha* pi);
 int impar(Pilha* pi);
+
+int vazia(Pilha *p);
+void cheia(Pilha *p);
+void empilhar(Pilha *p, int n);
+int desempilhar(Pilha *p, int n);
+void topo(Pilha *p);
+void menu();

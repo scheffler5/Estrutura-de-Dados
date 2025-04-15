@@ -9,6 +9,7 @@ struct elemento{
     struct aluno dados;
     int num;
     char palavra;
+    int numero;
     struct elemento *prox;
 };
 typedef struct elemento Elem;
@@ -318,6 +319,71 @@ int impar(Pilha* pi) {
         }
         no = no->prox;
     }
+}
+
+
+
+
+int vazia(Pilha *p) {
+    if (p == NULL || *p == NULL) {
+        return 1;  
+    }
+    return 0;
+}
+
+void cheia(Pilha *p) {
+    Elem* no = *p;
+    if(no->numero != 0){
+        printf("Esta Cheia!");
+    }
+}
+
+void empilhar(Pilha *p, int n) {
+    int numero;
+    Elem* no = *p;
+    for (int i = 0; i < n; i++) {
+        printf("Digite um numero para ser armazenado: ");
+        scanf("%d", &numero);
+        no = (Elem*)malloc(sizeof(Elem));
+        if (no == NULL) {
+            printf("Erro de alocação de memória!\n");
+            return;
+        }
+        no->numero = numero;
+        *p = no;
+        no = no->prox;
+    }
+}
+
+int desempilhar(Pilha *p, int n) {
+    Elem *no = *p;
+    for (int i=0;i<n;i++){
+        if(p == NULL)
+            return 0;
+        if((*p) == NULL)
+            return 1;
+        *p = no->prox;
+        free(no);}
+    return 1;
+}
+
+void topo(Pilha *p) {
+    if(p == NULL)
+        return;
+    Elem* no = *p;
+    printf("Topo: %d\n",no->numero);
+}
+
+
+void menu() 
+{ 
+printf("1-Verifica se a pilha e vazia.\n"); 
+printf("2-Verifica se a pilha e cheia.\n"); 
+printf("3-Empilha o elemento na pilha.\n"); 
+printf("4-Desempilha elemento da pilha.\n"); 
+printf("5-Le topo de um pilha.\n"); 
+printf("6-Libera a Pilha\n"); 
+printf("7-Sair.\n"); 
 }
 
 

@@ -14,6 +14,7 @@ int main(){
     Pilha* piii = cria_Pilha();
     Pilha* pi = cria_Pilha(); 
     Pilha* pii = cria_Pilha();
+    Pilha* p5 = cria_Pilha();
     int i;
     for(i=0; i < 4; i++)
         insere_Pilha(pi,a[i]);
@@ -63,6 +64,54 @@ int main(){
         printf("Não é um palíndromo.\n");
     }
 
+
+    int opcao = -1, valor, n3;
+    do{
+        
+        switch (opcao) {
+            menu();
+            printf("Escolha uma opção: ");
+            scanf("%d", &opcao);
+            case 1:
+                if (vazia(p5)) {
+                    printf("A pilha está vazia.\n");
+                } else {
+                    printf("A pilha não está vazia.\n");
+                }
+                break;
+            case 2:
+                cheia(p5);
+                break;
+            case 3:
+                printf("Digite quantos valores deseja empilhar: ");
+                scanf("%d", &n3);
+                empilhar(p5, n3);
+                imprime_Pilha3(p5);
+                break;
+            case 4:
+                printf("Digite quantos valores deseja desempilhar: ");
+                scanf("%d", &n3);
+                desempilhar(p5, n3);
+                imprime_Pilha3(p5);
+                break;
+            case 5:
+                topo(p5);
+                break;
+            case 7:
+                printf("Saindo...\n");
+                return 0;
+            case 6:
+                libera_Pilha(p5);
+                printf("Pilha Liberada!");
+            default:
+                printf("Opção inválida!\n");
+        }
+        menu();
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+    }while (opcao != 7);
+    
+    libera_Pilha(p5);
     libera_Pilha(p4);
     libera_Pilha(pii);
     libera_Pilha(piii);
