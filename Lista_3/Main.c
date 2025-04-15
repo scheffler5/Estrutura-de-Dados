@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Pilha.h"
+#include <string.h>
+#include <ctype.h>
+
 #define TAMANHO_PILHA 4
 int main(){
     struct aluno a[4] = {{2,"Andre",9.5,7.8,8.5},
@@ -47,11 +50,21 @@ int main(){
     scanf("%d",&t2);
     push3(piii,t2);
     verificar(pii, piii);
+    par(pii);
+    impar(pii);
 
-    push4(p4);
+    char str[100];
+    push4(p4,str);
     imprime_Pilha3(p4);
-    
 
+    if (Palindromo(p4, str)) {
+        printf("É um palíndromo!\n");
+    } else {
+        printf("Não é um palíndromo.\n");
+    }
+
+    libera_Pilha(p4);
+    libera_Pilha(pii);
     libera_Pilha(piii);
     libera_Pilha(pi);
     system("pause");

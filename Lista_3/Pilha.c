@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Pilha.h" //inclui os Prot�tipos
+#include "Pilha.h" 
+#include <string.h>
+#include <ctype.h>
 
 //Defini��o do tipo Pilha
 struct elemento{
@@ -264,22 +266,58 @@ int verificar(Pilha* pii, Pilha* piii){
     return 1;
 }
 //E6 
-int push4(Pilha* pi) {
+int push4(Pilha* pi,char* str) {
     char numero;
     Elem* no;
+    int i = 0;
     do {
         printf("Digite um numero para ser armazenado (Digite * para sair): ");
         scanf(" %c", &numero); 
         if (numero == '*') break; 
+        if (numero == ' ' || numero == '.') continue;
         if (pi == NULL) return 0;
         no = (Elem*)malloc(sizeof(Elem));
         if (no == NULL) return 0;
-        no->palavra = numero;
+        no->palavra = tolower(numero);
         no->prox = (*pi);
         *pi = no;
+        str[i++] = tolower(numero);
     } while (1);
+    str[i] = '\0';
     return 1;
 }
+int Palindromo(Pilha* pi, char* str) {
+    int i = 0;
+    Elem* no = *pi;
+    while (no != NULL) {
+        if (no->palavra != str[i]) {
+            return 0; 
+        }
+        no = no->prox;
+        i++;
+    }
+    return 1; 
+}
+int par(Pilha* pi) {
+    Elem* no = *pi;
+    printf("Números par na pilha:\n");
+    while (no != NULL) {
+        if (no->num % 2 == 0) {
+            printf("%d\n", no->num);
+        }
+        no = no->prox;
+    }
+}
 
+int impar(Pilha* pi) {
+    Elem* no = *pi;
+    printf("Números ímpares na pilha:\n");
+    while (no != NULL) {
+        if (no->num % 2 != 0) {
+            printf("%d\n", no->num);
+        }
+        no = no->prox;
+    }
+}
 
 
