@@ -4,5 +4,11 @@
         "stdlib.h": "c",
         "pilha.h": "c",
         "filadin.h": "c"
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
     }
 }
