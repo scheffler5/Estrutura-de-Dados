@@ -91,7 +91,15 @@ int Fila_vazia(Fila* fi) {
         return 1;
     return 0;
 }
-// EX 1 ------------------------------------------------
+// EX 1 -----------------------------------------------------------------------------
+/*
+EX 1 - Separa a fila em duas partes
+
+Essa funcao separa() e bem legal, ela pega uma fila e divide ela em duas partes diferentes. 
+Ela procura um aluno pela matricula e quando acha, faz um corte ali. A primeira fila fica com todo mundo que ta antes desse aluno, 
+e a segunda fila fica com todo mundo que ta depois. Se ela nao achar o aluno que a gente ta procurando, ela avisa que deu errado (retorna 0), 
+mas se achar, ela avisa que deu certo (retorna 1).
+*/
 int separa(Fila* f1, Fila* f2, int matricula_n) {
     if (f1 == NULL || f2 == NULL || f1->inicio == NULL)
         return 0;
@@ -119,6 +127,14 @@ int separa(Fila* f1, Fila* f2, int matricula_n) {
     return 1;
 }
 // EX 3 ---------------------------------------------------------------------------
+/*
+EX 3 - Inverte uma fila usando pilha
+
+A funcao inverterFila() faz uma coisa bem interessante: ela inverte a ordem de tudo que ta na fila.
+ Pra fazer isso, ela usa uma pilha como se fosse uma caixa auxiliar. Primeiro ela tira todo mundo da fila e bota na pilha, depois tira todo
+  mundo da pilha e bota de volta na fila. Assim a ordem fica toda ao contrario! Ela tem umas funcoes ajudantes que cuidam da pilha: uma pra preparar 
+  a pilha, outra pra ver se ta vazia, outra pra botar coisa e outra pra tirar coisa.
+*/
 void inicializarPilha(Pilha* p) {
     p->topo = NULL;
 }
@@ -181,6 +197,13 @@ int emfilera(Fila* fi, int valor) {
 
 
 // EX 4 -------------------------------------------------- ----------------------------
+/*
+EX 4 - Implementa uma fila com furar fila
+
+Essa parte e bem legal, ela deixa uma pessoa furar a fila! A funcao FuraFila() coloca o novo elemento logo no comeco da fila,
+ mas antes ela verifica se tem espaco. Tem tambem uma funcao que mostra todo mundo que ta na fila, e umas funcoes ajudantes que verificam se a fila ta 
+ vazia ou cheia. E tipo aquela vez que seu amigo te deixa furar a fila do cinema!
+*/
 int filaVaziaa(Fila* f) {
     return f->qtd == 0;
 }
@@ -227,6 +250,14 @@ void percorrerFila(Fila* f) {
 
 
 //EX 2 ---------------------------------------------------------------------------
+/*
+EX 2 - Implementa estruturas compostas
+
+Aqui a gente tem tres estruturas diferentes que sao tipo caixas dentro de caixas. 
+A primeira (filadefilas) tem duas filas dentro dela, a segunda (filadepilhas) tem uma fila e duas pilhas, e a terceira (pilhasdefilas) 
+tem duas filas dentro de uma pilha. Todas elas verificam se as coisas existem antes de criar, e avisam se deu certo ou errado. 
+E tipo quando voce guarda suas roupas em caixas dentro do guarda-roupa!
+*/
 // (A)
 int filadefilas(Fila* f1, Fila* f2) {
     if (f1 == NULL || f2 == NULL)
@@ -275,6 +306,14 @@ int pilhasdefilas(Fila* f1, Fila* f2) {
 
 
 // EX 5 -------------------------------------------------- ---------------------------- 
+/*
+EX 5 - Sistema de controle de decolagem de avioes
+
+Esse e um sistema bem legal que gerencia uma fila de avioes esperando pra decolar. 
+Ele pode criar um aviao novo com ID, modelo e companhia, botar ele na fila, contar quantos avioes tem esperando, deixar o primeiro 
+aviao decolar, mostrar todos os avioes na fila ou so o primeiro. Tem ate um menu bonitinho pro usuario escolher o que quer fazer. 
+E tipo aqueles paineis que a gente ve no aeroporto!
+*/
 Aviao *inicio = NULL;
 Aviao *fim = NULL;
 // criar o aviao
@@ -354,7 +393,7 @@ void listarPrimeiroAviao() {
     printf("Primeiro avião na fila: ID: %d, Modelo: %s, Companhia: %s\n",
            inicio->id, inicio->modelo, inicio->companhia);}
 
-// Menu principal
+// Menu 
 void menu() {
     int opcao;
     do {
@@ -378,12 +417,21 @@ void menu() {
             default: printf("Opção inválida.\n");}} while (opcao != 6);}
 
 
+
+
+// EX 6 -------------------------------------------------- ---------------------------------
+/*
+EX 6 - Junta duas filas ordenadas
+
+A funcao mergeFilas() faz uma coisa bem interessante: ela pega duas filas que ja estao ordenadas e junta elas em uma so, 
+mantendo a ordem. Ela fica olhando o primeiro elemento de cada fila, pega o menor e bota na fila resultado. 
+Faz isso ate uma das filas acabar, e depois bota o resto dos elementos da fila que sobrou. No final, voce tem uma fila ordenada 
+com todo mundo E tipo quando voce junta duas pilhas de cartas que ja estao em ordem.
+*/
 int frente(Fila *f) {
     if (f->inicio == NULL) return -1;
     return f->inicio->num;
 }
-            
-
 void mergeFilas(Fila *f1, Fila *f2, Fila *resultado) {
     while (!filaVaziaa(f1) && !filaVaziaa(f2)) {
         if (frente(f1) <= frente(f2)) {
@@ -400,8 +448,10 @@ void mergeFilas(Fila *f1, Fila *f2, Fila *resultado) {
 
     // Adiciona os restantes de f2
     while (!filaVaziaa(f2)) {
-        emfilera(resultado, remove_Fila(f2));
-    }
-}
-            
+        emfilera(resultado, remove_Fila(f2));}}
+   
+
+
+
+
 
