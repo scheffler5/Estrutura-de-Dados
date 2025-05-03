@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "FilaDin.h"
 
 int main(){
@@ -45,7 +46,8 @@ int main(){
     Fila* f1 = cria_Fila();
     Fila* f2 = cria_Fila();
 
-    // Separando a fila com base na matrícula
+    // EX 1 - Separando a fila em duas filas
+    printf("Separando a fila em duas filas...\n");
     if (separa(fi, f2, 2)) {
         printf("Separação feita com sucesso!\n");
         printf("Fila 1:\n");
@@ -56,7 +58,8 @@ int main(){
         printf("Não foi possível separar. Matrícula não encontrada.\n");
     }
 
-    // Trabalhando com a fila e pilha para inverter a fila
+    //  EX 3 - Invertendo a fila
+    printf("Inversão da fila...\n");
     Fila* f = cria_Fila();
 
     for(i = 0; i < 4; i++) {
@@ -76,7 +79,7 @@ int main(){
     imprime_Fila(f);
 
 
-
+    // EX 4 - FuraFila
     Fila* fiii = cria_Fila();
     for(i = 0; i < 3; i++) {
         FuraFila(fiii, a[i]);
@@ -100,6 +103,13 @@ int main(){
 
     printf("Fila após remoção do primeiro item:\n");
     percorrerFila(fiii);
+    
+
+
+    //EX 5 - Aviao
+    menu();
+
+    
     
 
     libera_Fila(fiii);

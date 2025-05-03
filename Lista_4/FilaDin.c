@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "FilaDin.h"
 
 Fila* cria_Fila() {
@@ -212,12 +213,14 @@ void percorrerFila(Fila* f) {
         printf("Fila vazia!\n");
         return;}
     Elem* no = f->inicio;
-    while (no != NULL) {
+
+    //while (no != NULL) {
         printf("Matrícula: %d\n", no->dados.matricula);
         printf("Nome: %s\n", no->dados.nome);
         printf("Notas: %.2f %.2f %.2f\n", no->dados.n1, no->dados.n2, no->dados.n3);
         printf("-------------------------------\n");
-        no = no->prox;}
+        no = no->prox;
+    //}
     printf("\n");
 }
 
@@ -267,3 +270,112 @@ int pilhasdefilas(Fila* f1, Fila* f2) {
     pdf->qtd = 0;
     return 1;
 }
+
+
+
+
+// EX 5 -------------------------------------------------- ---------------------------- 
+Aviao *inicio = NULL;
+Aviao *fim = NULL;
+// criar o aviao
+Aviao* criarAviao() {
+    Aviao *novo = (Aviao*) malloc(sizeof(Aviao));
+    if (!novo) {
+        printf("Erro de alocação de memória.\n");
+        exit(1);
+    }
+    printf("Digite o ID do avião: ");
+    scanf("%d", &novo->id);
+    getchar(); // limpa o buffer
+    printf("Digite o modelo do avião: ");
+    fgets(novo->modelo, 50, stdin);
+    novo->modelo[strcspn(novo->modelo, "\n")] = '\0'; // remove '\n'
+
+    printf("Digite a companhia aérea: ");
+    fgets(novo->companhia, 50, stdin);
+    novo->companhia[strcspn(novo->companhia, "\n")] = '\0';
+
+    novo->prox = NULL;
+    return novo;}
+
+// adicionar avião na fila
+void adicionarAviao() {
+    Aviao *novo = criarAviao();
+    if (fim == NULL) {
+        inicio = fim = novo;
+    } else {
+        fim->prox = novo;
+        fim = novo;
+    }
+    printf("Avião adicionado à fila de decolagem.\n");}
+
+// listar número de aviões na fila
+void listarNumeroAvioes() {
+    int contador = 0;
+    Aviao *atual = inicio;
+    while (atual != NULL) {
+        contador++;
+        atual = atual->prox;
+    }
+    printf("Número de aviões na fila de decolagem: %d\n", contador);}
+
+// autorizar decolagem do primeiro avião
+void autorizarDecolagem() {
+    if (inicio == NULL) {
+        printf("Nenhum avião na fila para decolar.\n");
+        return;
+    }
+    Aviao *remover = inicio;
+    printf("Avião autorizado para decolagem: ID %d, Modelo %s, Companhia %s\n",
+           remover->id, remover->modelo, remover->companhia);
+    inicio = inicio->prox;
+    if (inicio == NULL) fim = NULL;
+    free(remover);}
+
+// listar todos os aviões na fila
+void listarTodosAvioes() {
+    if (inicio == NULL) {
+        printf("Nenhum avião na fila.\n");
+        return;
+    }
+    Aviao *atual = inicio;
+    int i = 1;
+    printf("Aviões na fila de decolagem:\n");
+    while (atual != NULL) {
+        printf("%d. ID: %d, Modelo: %s, Companhia: %s\n", i, atual->id, atual->modelo, atual->companhia);
+        atual = atual->prox;
+        i++;}}
+
+// mostrar características do primeiro avião
+void listarPrimeiroAviao() {
+    if (inicio == NULL) {
+        printf("Nenhum avião na fila.\n");
+        return;}
+    printf("Primeiro avião na fila: ID: %d, Modelo: %s, Companhia: %s\n",
+           inicio->id, inicio->modelo, inicio->companhia);}
+
+// Menu principal
+void menu() {
+    int opcao;
+    do {
+        printf("\n--- Controle da Pista de Decolagem ---\n");
+        printf("1. Listar número de aviões na fila\n");
+        printf("2. Autorizar decolagem do primeiro avião\n");
+        printf("3. Adicionar um avião à fila\n");
+        printf("4. Listar todos os aviões na fila\n");
+        printf("5. Listar características do primeiro avião\n");
+        printf("6. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+        getchar(); 
+        switch (opcao) {
+            case 1: listarNumeroAvioes(); break;
+            case 2: autorizarDecolagem(); break;
+            case 3: adicionarAviao(); break;
+            case 4: listarTodosAvioes(); break;
+            case 5: listarPrimeiroAviao(); break;
+            case 6: printf("Encerrando o programa.\n"); break;
+            default: printf("Opção inválida.\n");}} while (opcao != 6);}
+
+
+

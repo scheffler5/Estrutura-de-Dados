@@ -34,6 +34,33 @@ struct filadefilas {
 };
 typedef struct filadefilas FDF;
 
+
+
+
+// Protótipos das funções
+Fila* cria_Fila();
+void libera_Fila(Fila* fi);
+int consulta_Fila(Fila* fi, struct aluno *al);
+void imprime_Fila(Fila* fi);
+int insere_Fila(Fila* fi, struct aluno al);
+int remove_Fila(Fila* fi);
+int tamanho_Fila(Fila* fi);
+int Fila_vazia(Fila* fi);
+int separa(Fila* f1, Fila* f2, int matricula_n);
+int emfilera(Fila* fi, int valor);
+int filaVaziaa(Fila* f);
+int filaCheia(Fila* f);
+void FuraFila(Fila* f, struct aluno al);
+void percorrerFila(Fila* f);
+
+
+
+// Definição de Pilha
+struct pilha {
+    Elem* topo;
+};
+typedef struct pilha Pilha;
+
 struct filadepilhas {
     Fila* f3;
     Pilha* p1;
@@ -53,39 +80,30 @@ struct pilhasdefilas {
 };
 typedef struct pilhasdefilas PDF;
 
-
-// Protótipos das funções
-Fila* cria_Fila();
-void libera_Fila(Fila* fi);
-int consulta_Fila(Fila* fi, struct aluno *al);
-void imprime_Fila(Fila* fi);
-int insere_Fila(Fila* fi, struct aluno al);
-int remove_Fila(Fila* fi);
-int tamanho_Fila(Fila* fi);
-int Fila_vazia(Fila* fi);
-int separa(Fila* f1, Fila* f2, int matricula_n);
-int emfilera(Fila* fi, int valor);
-int filaVaziaa(Fila* f);
-int filaCheia(Fila* f);
-void FuraFila(Fila* f, struct aluno al);
-void percorrerFila(Fila* f);
-int filadefilas(Fila* f1, Fila* f2);
-int filadepilhas(Fila* f3, Pilha* p1, Pilha* p2);
-int pilhasdefilas(Fila* f1, Fila* f2);
-
-
-// Definição de Pilha
-struct pilha {
-    Elem* topo;
-};
-typedef struct pilha Pilha;
-
 // Protótipos das funções de pilha
 void inicializarPilha(Pilha* p);
 int pilhaVazia(Pilha* p);
 int empilhar(Pilha* p, int valor);
 int desempilhar(Pilha* p);
 void inverterFila(Fila *f);
+int filadefilas(Fila* f1, Fila* f2);
+int filadepilhas(Fila* f3, Pilha* p1, Pilha* p2);
+int pilhasdefilas(Fila* f1, Fila* f2);
+
+typedef struct Aviao {
+    int id;
+    char modelo[50];
+    char companhia[50];
+    struct Aviao *prox;
+} Aviao;
+
+Aviao* criarAviao();
+void adicionarAviao();
+void listarNumeroAvioes();
+void autorizarDecolagem();
+void listarTodosAvioes();
+void listarPrimeiroAviao();
+void menu();
 
 #endif
 
