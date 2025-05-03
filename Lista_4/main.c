@@ -110,7 +110,24 @@ int main(){
     menu();
 
     
-    
+    //EX6 -merge de filas
+    Fila* f5 = cria_Fila(); 
+    Fila* f6 = cria_Fila();
+    Fila* resultado = cria_Fila();
+
+    emfilera(f5, 1);
+    emfilera(f5, 4);
+    emfilera(f5, 6);
+
+
+    emfilera(f6, 2);
+    emfilera(f6, 3);
+    emfilera(f6, 5);
+    emfilera(f6, 7);
+
+    mergeFilas(f5, f6, resultado);
+    printf("Resultado do merge:\n");
+    imprime_Fila(resultado);
 
     libera_Fila(fiii);
     libera_Fila(fi);

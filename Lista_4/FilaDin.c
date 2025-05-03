@@ -378,4 +378,30 @@ void menu() {
             default: printf("Opção inválida.\n");}} while (opcao != 6);}
 
 
+int frente(Fila *f) {
+    if (f->inicio == NULL) return -1;
+    return f->inicio->num;
+}
+            
+
+void mergeFilas(Fila *f1, Fila *f2, Fila *resultado) {
+    while (!filaVaziaa(f1) && !filaVaziaa(f2)) {
+        if (frente(f1) <= frente(f2)) {
+            emfilera(resultado, remove_Fila(f1));
+        } else {
+            emfilera(resultado, remove_Fila(f2));
+        }
+    }
+
+    // Adiciona os restantes de f1
+    while (!filaVaziaa(f1)) {
+        emfilera(resultado, remove_Fila(f1));
+    }
+
+    // Adiciona os restantes de f2
+    while (!filaVaziaa(f2)) {
+        emfilera(resultado, remove_Fila(f2));
+    }
+}
+            
 

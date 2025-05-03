@@ -104,6 +104,8 @@ void autorizarDecolagem();
 void listarTodosAvioes();
 void listarPrimeiroAviao();
 void menu();
+int frente(Fila *f);
+void mergeFilas(Fila *f1, Fila *f2, Fila *resultado);
 
 #endif
 
