@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1189872156 source:d:\projlistadinencaddupla\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1355067066 source:d:\andre\aulas ufu\aulas prontas\estrutura de dados 1\projlistadinencaddupla\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ListaDinEncadDupla.h"
+
+1358593324 source:d:\andre\aulas ufu\aulas prontas\estrutura de dados 1\projlistadinencaddupla\listadinencaddupla.c
+	<stdio.h>
+	<stdlib.h>
+	"ListaDinEncadDupla.h"
+
+1358592346 d:\andre\aulas ufu\aulas prontas\estrutura de dados 1\projlistadinencaddupla\listadinencaddupla.h
+

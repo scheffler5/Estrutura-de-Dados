@@ -233,6 +233,7 @@ int listas_iguais_rec(Elemento* li1, Elemento* li2){
        li1->dados.n3 != li2->dados.n3)
         return 0; 
     return listas_iguais_rec(li1->prox, li2->prox);}
+
 //EX 3  -------------------------------------------------------------------------------------------------------------------------------
 int insere_lista_pos(Lista* li, struct aluno al, int pos) {
     if (li == NULL || pos < 0) { return 0;}
