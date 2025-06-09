@@ -3,7 +3,8 @@
         "stdio.h": "c",
         "stdlib.h": "c",
         "pilha.h": "c",
-        "filadin.h": "c"
+        "filadin.h": "c",
+        "stdbool.h": "c"
     },
     "github.copilot.enable": {
         "*": false,

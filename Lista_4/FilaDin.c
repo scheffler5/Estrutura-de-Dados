@@ -200,7 +200,7 @@ int emfilera(Fila* fi, int valor) {
 /*
 EX 4 - Implementa uma fila com furar fila
 
-Essa parte e bem legal, ela deixa uma pessoa furar a fila! A funcao FuraFila() coloca o novo elemento logo no comeco da fila,
+ela deixa uma pessoa furar a fila A funcao FuraFila() coloca o novo elemento logo no comeco da fila,
  mas antes ela verifica se tem espaco. Tem tambem uma funcao que mostra todo mundo que ta na fila, e umas funcoes ajudantes que verificam se a fila ta 
  vazia ou cheia. E tipo aquela vez que seu amigo te deixa furar a fila do cinema!
 */
