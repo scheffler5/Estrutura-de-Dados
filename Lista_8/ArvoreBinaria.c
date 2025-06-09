@@ -231,10 +231,6 @@ void imprime_folhas_decrescente_rec(struct NO* no) {
 // depois que printar o valor mais a direita, vai voltando com os valores da esquerda no ramo da direita, pegando os valores do maior para o menor
 
 
-
-bool sao_iguais(ArvBin *raiz1, ArvBin *raiz2) {
-    return sao_iguais_rec(*raiz1, *raiz2);}
-
 bool sao_iguais_rec(struct NO* no1, struct NO* no2) {
     if (no1 == NULL && no2 == NULL) return true;
     if (no1 == NULL || no2 == NULL) return false;
@@ -273,9 +269,6 @@ void coletar_valores_pares_rec(struct NO* no, int* lista, int* contador) {
 // estas duas funçoes encontrar um numero par, coletam ele colocando em uma lista com o indice pelo contador, depois na outra função
 // ele cria um vetor, pega o numero do contador e insere o vetor  como a lista em rec, depois ele da um free() nos pares que sobram
 
-
-bool sao_similares(ArvBin *raiz1, ArvBin *raiz2) {
-    return sao_similares_rec(*raiz1, *raiz2);}
 
 bool sao_similares_rec(struct NO* no1, struct NO* no2) {
     if (no1 == NULL && no2 == NULL) return true;
