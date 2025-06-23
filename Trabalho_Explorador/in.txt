@@ -1,0 +1,12 @@
+Projetos/Compilador/src/parser.c
+Projetos/Compilador/src/lexer.c
+Projetos/Compilador/include/ast.h
+Projetos/Compilador/Makefile
+Projetos/Web/index.html
+Projetos/Web/css/style.css
+MeusDocumentos/Faculdade/calculo.pdf
+MeusDocumentos/Faculdade/relatorio.docx
+MeusDocumentos/Pessoal/fotos_viagem/rio.jpg
+MeusDocumentos/Pessoal/fotos_viagem/salvador.png
+MeusDownloads/setup.exe
+README.md

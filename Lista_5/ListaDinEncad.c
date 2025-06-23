@@ -191,16 +191,12 @@ void imprime_lista(Lista* li){
 // retornando os dados do aluno em ambos os casos, se ele for encontrado.
 //EX 1 --- A
 int consulta_lista_mat(Lista* li, int mat, struct aluno *al){
-    if(li == NULL)
-        return 0;
+    if(li == NULL) return 0;
     Elemento *no = *li;
-    while(no != NULL && no->dados.matricula != mat)
-        no = no->prox;
-    if(no == NULL)
-        return 0;
+    while(no != NULL && no->dados.matricula != mat) no = no->prox;
+    if(no == NULL) return 0;
     *al = no->dados;
-    return 1;
-}
+    return 1;}
 
 //EX 1 -- B
 int consulta_lista_pos(Lista* li, int pos, struct aluno *al){
@@ -209,12 +205,10 @@ int consulta_lista_pos(Lista* li, int pos, struct aluno *al){
     int i = 1;
     while(no != NULL && i < pos){
         no = no->prox;
-        i++;
-    }
+        i++;}
     if(no == NULL) return 0;
     *al = no->dados;
-    return 1;
-}
+    return 1;}
 
 //EX 2  -------------------------------------------------------------------------------------------------------------------------------
 // Aqui são apresentadas duas funções que utilizam recursividade:
@@ -226,10 +220,8 @@ int remove_recursivo(Elemento** li, int mat){
         Elemento* temp = *li;
         *li = (*li)->prox;
         free(temp);
-        return 1;
-    }
-    return remove_recursivo(&(*li)->prox, mat);
-}
+        return 1;}
+    return remove_recursivo(&(*li)->prox, mat);}
 
 int listas_iguais_rec(Elemento* li1, Elemento* li2){
     if(li1 == NULL && li2 == NULL) return 1; // Ambas vazias, são iguais
@@ -241,8 +233,7 @@ int listas_iguais_rec(Elemento* li1, Elemento* li2){
        li1->dados.n2 != li2->dados.n2 ||
        li1->dados.n3 != li2->dados.n3)
         return 0; // Dados diferentes
-    return listas_iguais_rec(li1->prox, li2->prox); // Verifica o restante da lista
-}
+    return listas_iguais_rec(li1->prox, li2->prox); }
 
 //EX 3  -------------------------------------------------------------------------------------------------------------------------------
 // Esta função é responsável por inserir um novo aluno em uma posição específica
@@ -256,24 +247,20 @@ int insere_lista_pos(Lista* li, struct aluno al, int pos) {
     if (pos == 0) { // Inserção no início da lista
         no->prox = *li;
         *li = no;
-        return 1;
-    }
+        return 1;}
     int i = 0;
     Elemento* aux = *li;
     // Navega até o elemento anterior à posição de inserção
     while (aux != NULL && i < pos - 1) {
         aux = aux->prox;
-        i++;
-    }
+        i++;}
     // Se aux é NULL (posição inválida, além do fim) ou se a lista era vazia e pos > 0
     if (aux == NULL) {
         free(no); // Libera o nó alocado, pois a posição é inválida
-        return 0;
-    }
+        return 0;}
     no->prox = aux->prox;
     aux->prox = no;
-    return 1;
-}
+    return 1;}
 
 //Ex 4  -------------------------------------------------------------------------------------------------------------------------------
 // Este bloco de código introduz funções para manipular uma lista de valores float.
@@ -293,28 +280,22 @@ ListaValor cria_lista_valores(float v[], int n){
         if(novo == NULL) { // Falha na alocação, retorna a lista como estava
             // Liberar memória já alocada para 'lista' seria uma boa prática aqui
             // em um cenário de falha parcial.
-            return lista;
-        }
+            return lista;}
         novo->info = v[i];
         novo->prox = NULL;
         if(lista == NULL){
             lista = novo;
         } else {
-            ultimo->prox = novo;
-        }
-        ultimo = novo;
-    }
-    return lista;
-}
+            ultimo->prox = novo;}
+        ultimo = novo;}
+    return lista;}
 
 void imprime_lista_valores(ListaValor lista){
     Valor* atual = lista;
     while(atual != NULL){
         printf("%.2f -> ", atual->info);
-        atual = atual->prox;
-    }
-    printf("NULL\n");
-}
+        atual = atual->prox;}
+    printf("NULL\n");}
 
 //Ex 5  -------------------------------------------------------------------------------------------------------------------------------
 // O propósito desta função é remover da lista todos os alunos
