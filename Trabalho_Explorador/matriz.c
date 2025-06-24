@@ -231,3 +231,72 @@ void clear_screen() {
         system("clear");
     #endif
 }
+
+
+const char* get_directory_contents(Node* current_dir) {
+    // Usamos um buffer estático para simplificar o gerenciamento de memória.
+    // Isso significa que você deve copiar o resultado no Python antes de chamar a função novamente.
+    static char buffer[4096]; 
+    memset(buffer, 0, sizeof(buffer)); // Limpa o buffer
+
+    if (current_dir->type != FOLDER_TYPE) {
+        snprintf(buffer, sizeof(buffer), "ERRO: Nao e uma pasta.");
+        return buffer;
+    }
+
+    Node* child = current_dir->children_head;
+    if (child == NULL) {
+        return ""; // Retorna string vazia se o diretório estiver vazio
+    }
+
+    char* current_pos = buffer;
+    size_t remaining_size = sizeof(buffer);
+
+    while (child != NULL) {
+        int written;
+        if (child->type == FOLDER_TYPE) {
+            written = snprintf(current_pos, remaining_size, "%s/|", child->name);
+        } else {
+            written = snprintf(current_pos, remaining_size, "%s|", child->name);
+        }
+
+        if (written > 0) {
+            current_pos += written;
+            remaining_size -= written;
+        }
+
+        if (remaining_size <= 1) { // Checagem de segurança
+            break;
+        }
+        child = child->next_sibling;
+    }
+    
+    // Remove o último '|' se existir
+    if (strlen(buffer) > 0) {
+        buffer[strlen(buffer) - 1] = '\0';
+    }
+
+    return buffer;
+}
+
+
+void build_path_recursive(Node* node, char* buffer, size_t buffer_size) {
+    if (node == NULL || node->parent == NULL) {
+        return;
+    }
+    build_path_recursive(node->parent, buffer, buffer_size);
+    strncat(buffer, "/", buffer_size - strlen(buffer) - 1);
+    strncat(buffer, node->name, buffer_size - strlen(buffer) - 1);
+}
+
+// Função principal que Python irá chamar
+const char* get_node_path_string(Node* node) {
+    static char path_buffer[1024];
+    if (node == NULL) {
+        snprintf(path_buffer, sizeof(path_buffer), "");
+        return path_buffer;
+    }
+    snprintf(path_buffer, sizeof(path_buffer), "root");
+    build_path_recursive(node, path_buffer, sizeof(path_buffer));
+    return path_buffer;
+}

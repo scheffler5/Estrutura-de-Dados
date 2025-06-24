@@ -39,3 +39,5 @@ void print_path_to_node(Node* node);
 void show_help();
 void clear_screen();
 #endif 
+const char* get_directory_contents(Node* current_dir);
+const char* get_node_path_string(Node* node);
